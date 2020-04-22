@@ -40,12 +40,18 @@ export class TodoContainer extends Component {
   }
 
   switchTodoStatus(id) {
-    let todoList = [...this.state.todoList];
-    let itemIndex = todoList.findIndex((item) => item.id === id);
-    todoList[itemIndex].status = !todoList[itemIndex].status;
-    this.setState(() => ({
-      todoList: todoList,
-    }));
+    let itemToUpdate = this.state.todoList.find((item) => item.id === id);
+    itemToUpdate.status = !itemToUpdate.status;
+
+    TodoListAPI.updateItem(itemToUpdate)
+      .then((response) => {
+        let todoList = [...this.state.todoList];
+        let itemIndex = todoList.findIndex((item) => item.id === response.data.id);
+        todoList[itemIndex] = response.data;
+        this.setState(() => ({
+          todoList: todoList,
+        }));
+      })
   }
 
   deleteTodoItem(id) {
