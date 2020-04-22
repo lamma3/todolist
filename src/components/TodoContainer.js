@@ -5,16 +5,34 @@ export class TodoContainer extends Component {
   constructor(props) {
     super(props);
 
+    this.addTodoItem = this.addTodoItem.bind(this);
+    this.log = this.log.bind(this)
+
     this.state = {
       todoList: [{ id: "1", content: "content1", status: true }],
     };
+  }
+
+  addTodoItem(event) {
+    event.preventDefault();
+    console.log(this.state.todoList);
+    let newItem = {
+      content: event.target.newItem.value,
+      status: true,
+    };
+    this.setState((state) => ({
+      todoList: [...state.todoList, newItem],
+    }));
   }
 
   render() {
     return (
       <div>
         <TodoList listItems={this.state.todoList} />
-        <input name="new-item" type="text" />
+        <form onSubmit={this.addTodoItem}>
+          <input name="newItem" type="text" />
+          <input type="submit" />
+        </form>
       </div>
     );
   }
