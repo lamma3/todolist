@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import TodoList from "./TodoList";
+import TodoListAPI from "../api/todo-list-api";
 
 export class TodoContainer extends Component {
   constructor(props) {
@@ -10,11 +11,14 @@ export class TodoContainer extends Component {
     this.deleteTodoItem = this.deleteTodoItem.bind(this);
 
     this.state = {
-      todoList: [
-        { id: "1", content: "content1", status: true },
-        { id: "2", content: "content2", status: true },
-      ],
+      todoList: [],
     };
+  }
+
+  componentDidMount() {
+    TodoListAPI.getTodoList()
+      .then((response) => this.setState(() => ({ todoList: response.data })))
+      .catch((error) => console.log(error));
   }
 
   addTodoItem(event) {
