@@ -3,15 +3,12 @@ import TodoList from "./TodoList";
 
 export class TodoContainer extends Component {
   constructor(props) {
-    super(props)
-  
+    super(props);
+
     this.state = {
-       todoList: [
-        {id: "1", content: "content1", status: true},
-       ],
-    }
+      todoList: [{ id: "1", content: "content1", status: true }],
+    };
   }
-  
 
   render() {
     return (

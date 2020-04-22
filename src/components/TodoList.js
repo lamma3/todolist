@@ -13,7 +13,7 @@ export class TodoList extends Component {
   render() {
     return (
       <div>
-        {this.state.todoList.map(({id, content, status}) => (
+        {this.state.todoList.map(({ id, content, status }) => (
           <TodoListItem id={id} content={content} status={status} />
         ))}
       </div>

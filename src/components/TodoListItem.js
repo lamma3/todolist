@@ -2,15 +2,15 @@ import React, { Component } from "react";
 
 export class TodoListItem extends Component {
   constructor(props) {
-    super(props)
-  
+    super(props);
+
     this.state = {
-       id: props.id,
-       content: props.content,
-       status: props.status,
-    }
+      id: props.id,
+      content: props.content,
+      status: props.status,
+    };
   }
-  
+
   render() {
     return (
       <div>
