@@ -6,9 +6,7 @@ export class TodoList extends Component {
     super(props);
 
     this.state = {
-      todoList: [
-        {id: "1", content: "content1", status: true}
-      ],
+      todoList: props.listItems,
     };
   }
 
