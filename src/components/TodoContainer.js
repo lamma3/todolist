@@ -19,13 +19,18 @@ export class TodoContainer extends Component {
   addTodoItem(event) {
     event.preventDefault();
     let newItem = {
-      id: this.state.todoList.length + 1,
+      id: this.generateTodoItemId(),
       content: event.target.newItem.value,
       status: true,
     };
     this.setState((state) => ({
       todoList: [...state.todoList, newItem],
     }));
+  }
+
+  generateTodoItemId() {
+    let ids = this.state.todoList.map(item => parseInt(item.id));
+    return (Math.max(...ids) + 1).toString();
   }
 
   switchTodoStatus(id) {
