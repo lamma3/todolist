@@ -1,6 +1,6 @@
-import React from 'react';
-import './App.css';
-import TodoContainer from './components/TodoContainer';
+import React from "react";
+import "antd/dist/antd.css";
+import TodoContainer from "./components/TodoContainer";
 
 function App() {
   return (
