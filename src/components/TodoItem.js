@@ -1,20 +1,20 @@
 import React, { Component } from "react";
 
 export class TodoItem extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      id: props.id,
-      content: props.content,
-      status: props.status,
-    };
-  }
-
   render() {
+    const {data, onToggleTodoStatusChange} = this.props;
+
     return (
       <div>
-        <span>{this.state.content}</span>
+        <span
+          className={data.status? "": "done"}
+          onClick={() =>
+            onToggleTodoStatusChange(data.id)
+          }
+        >
+          {data.content}
+        </span>
+        <button>close</button>
       </div>
     );
   }

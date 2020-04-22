@@ -3,10 +3,16 @@ import TodoItem from "./TodoItem";
 
 export class TodoList extends Component {
   render() {
+    const {listItems, onToggleTodoStatusChange} = this.props;
+
     return (
       <div>
-        {this.props.listItems.map(({ id, content, status }, index) => (
-          <TodoItem key={index} id={id} content={content} status={status} />
+        {listItems.map((item) => (
+          <TodoItem
+            key={item.id}
+            data={item}
+            onToggleTodoStatusChange={onToggleTodoStatusChange}
+          />
         ))}
       </div>
     );

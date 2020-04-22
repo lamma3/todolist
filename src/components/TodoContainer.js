@@ -6,16 +6,20 @@ export class TodoContainer extends Component {
     super(props);
 
     this.addTodoItem = this.addTodoItem.bind(this);
+    this.switchTodoStatus = this.switchTodoStatus.bind(this);
 
     this.state = {
-      todoList: [{ id: "1", content: "content1", status: true }],
+      todoList: [
+        { id: "1", content: "content1", status: true },
+        { id: "2", content: "content2", status: true },
+      ],
     };
   }
 
   addTodoItem(event) {
     event.preventDefault();
-    console.log(this.state.todoList);
     let newItem = {
+      id: this.state.todoList.length + 1,
       content: event.target.newItem.value,
       status: true,
     };
@@ -24,10 +28,22 @@ export class TodoContainer extends Component {
     }));
   }
 
+  switchTodoStatus(id) {
+    let todoList = [...this.state.todoList];
+    let itemIndex = todoList.findIndex((item) => item.id === id);
+    todoList[itemIndex].status = !todoList[itemIndex].status;
+    this.setState(() => ({
+      todoList: todoList,
+    }));
+  }
+
   render() {
     return (
       <div>
-        <TodoList listItems={this.state.todoList} />
+        <TodoList
+          listItems={this.state.todoList}
+          onToggleTodoStatusChange={this.switchTodoStatus}
+        />
         <form onSubmit={this.addTodoItem}>
           <input name="newItem" type="text" />
           <input type="submit" />
