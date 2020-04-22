@@ -6,7 +6,6 @@ export class TodoContainer extends Component {
     super(props);
 
     this.addTodoItem = this.addTodoItem.bind(this);
-    this.log = this.log.bind(this)
 
     this.state = {
       todoList: [{ id: "1", content: "content1", status: true }],
