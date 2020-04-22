@@ -3,7 +3,7 @@ import TodoItem from "./TodoItem";
 
 export class TodoList extends Component {
   render() {
-    const {listItems, onToggleTodoStatusChange} = this.props;
+    const { listItems, onToggleTodoStatusChange, onRemoveTodo } = this.props;
 
     return (
       <div>
@@ -12,6 +12,7 @@ export class TodoList extends Component {
             key={item.id}
             data={item}
             onToggleTodoStatusChange={onToggleTodoStatusChange}
+            onRemoveTodo={onRemoveTodo}
           />
         ))}
       </div>

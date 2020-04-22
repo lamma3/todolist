@@ -7,6 +7,7 @@ export class TodoContainer extends Component {
 
     this.addTodoItem = this.addTodoItem.bind(this);
     this.switchTodoStatus = this.switchTodoStatus.bind(this);
+    this.deleteTodoItem = this.deleteTodoItem.bind(this);
 
     this.state = {
       todoList: [
@@ -28,11 +29,6 @@ export class TodoContainer extends Component {
     }));
   }
 
-  generateTodoItemId() {
-    let ids = this.state.todoList.map(item => parseInt(item.id));
-    return (Math.max(...ids) + 1).toString();
-  }
-
   switchTodoStatus(id) {
     let todoList = [...this.state.todoList];
     let itemIndex = todoList.findIndex((item) => item.id === id);
@@ -42,12 +38,27 @@ export class TodoContainer extends Component {
     }));
   }
 
+  deleteTodoItem(id) {
+    let todoList = [...this.state.todoList];
+    let itemIndex = todoList.findIndex((item) => item.id === id);
+    todoList.pop(itemIndex);
+    this.setState(() => ({
+      todoList: todoList,
+    }));
+  }
+
+  generateTodoItemId() {
+    let ids = this.state.todoList.map((item) => parseInt(item.id));
+    return (Math.max(...ids) + 1).toString();
+  }
+
   render() {
     return (
       <div>
         <TodoList
           listItems={this.state.todoList}
           onToggleTodoStatusChange={this.switchTodoStatus}
+          onRemoveTodo={this.deleteTodoItem}
         />
         <form onSubmit={this.addTodoItem}>
           <input name="newItem" type="text" />
