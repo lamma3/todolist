@@ -49,7 +49,8 @@ export class TodoContainer extends Component {
 
   generateTodoItemId() {
     let ids = this.state.todoList.map((item) => parseInt(item.id));
-    return (Math.max(...ids) + 1).toString();
+    let id = ids.length > 0 ? Math.max(...ids) + 1 : 1;
+    return id.toString();
   }
 
   render() {
