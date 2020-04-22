@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import TodoList from "./TodoList";
 import TodoListAPI from "../api/todo-list-api";
-import { Card } from "antd";
+import { Row, Col, Form, Input, Button, Space, Card } from "antd";
 
 export class TodoContainer extends Component {
   constructor(props) {
@@ -22,11 +22,9 @@ export class TodoContainer extends Component {
       .catch((error) => console.log(error));
   }
 
-  addTodoItem(event) {
-    event.preventDefault();
-
+  addTodoItem(inputs) {
     let newItem = {
-      content: event.target.newItem.value,
+      content: inputs.newItem,
       status: true,
     };
 
@@ -72,11 +70,20 @@ export class TodoContainer extends Component {
 
   render() {
     return (
-      <Card title="Todo List">
-        <form onSubmit={this.addTodoItem}>
-          <input name="newItem" type="text" />
-          <input type="submit" />
-        </form>
+      <Card
+        title={
+          <Form name="addTodoItem" onFinish={this.addTodoItem} layout="inline">
+            <Form.Item name="newItem">
+              <Input placeholder="Add a new todo item" />
+            </Form.Item>
+            <Form.Item>
+              <Button type="primary" htmlType="submit">
+                Submit
+              </Button>
+            </Form.Item>
+          </Form>
+        }
+      >
         <TodoList
           listItems={this.state.todoList}
           onToggleTodoStatusChange={this.switchTodoStatus}
