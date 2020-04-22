@@ -7,14 +7,11 @@ export class TodoItem extends Component {
     const { data, onToggleTodoStatusChange, onRemoveTodo } = this.props;
 
     return (
-      <Card.Grid>
-        <Space>
-          <Text
-            delete={!data.status}
-            onClick={() => onToggleTodoStatusChange(data.id)}
-          >
-            {data.content}
-          </Text>
+      <Card.Grid onClick={() => onToggleTodoStatusChange(data.id)}>
+        <div style={{ float: "left" }}>
+          <Text delete={!data.status}>{data.content}</Text>
+        </div>
+        <div style={{ float: "right" }}>
           <Button
             onClick={() => onRemoveTodo(data.id)}
             type="danger"
@@ -23,7 +20,7 @@ export class TodoItem extends Component {
           >
             X
           </Button>
-        </Space>
+        </div>
       </Card.Grid>
     );
   }
