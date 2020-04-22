@@ -1,7 +1,7 @@
 import React from "react";
 import "antd/dist/antd.css";
 import TodoContainer from "./components/TodoContainer";
-import { Layout, Typography, Row } from "antd";
+import { Layout, Typography } from "antd";
 const { Header, Content } = Layout;
 const { Title } = Typography;
 

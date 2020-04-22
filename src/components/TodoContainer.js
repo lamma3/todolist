@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import TodoList from "./TodoList";
 import TodoListAPI from "../api/todo-list-api";
-import { Row, Col, Form, Input, Button, Space, Card } from "antd";
+import { Form, Input, Button, Card } from "antd";
 
 export class TodoContainer extends Component {
   constructor(props) {
