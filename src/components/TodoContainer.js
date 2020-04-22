@@ -24,14 +24,19 @@ export class TodoContainer extends Component {
 
   addTodoItem(event) {
     event.preventDefault();
+
     let newItem = {
-      id: this.generateTodoItemId(),
       content: event.target.newItem.value,
       status: true,
     };
-    this.setState((state) => ({
-      todoList: [...state.todoList, newItem],
-    }));
+
+    TodoListAPI.addItem(newItem)
+      .then((response) =>
+        this.setState((state) => ({
+          todoList: [...state.todoList, response.data],
+        }))
+      )
+      .catch((error) => console.log(error));
   }
 
   switchTodoStatus(id) {
@@ -50,12 +55,6 @@ export class TodoContainer extends Component {
     this.setState(() => ({
       todoList: todoList,
     }));
-  }
-
-  generateTodoItemId() {
-    let ids = this.state.todoList.map((item) => parseInt(item.id));
-    let id = ids.length > 0 ? Math.max(...ids) + 1 : 1;
-    return id.toString();
   }
 
   render() {
