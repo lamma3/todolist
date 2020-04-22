@@ -17,7 +17,7 @@ export class TodoContainer extends Component {
   }
 
   componentDidMount() {
-    TodoListAPI.getTodoList()
+    TodoListAPI.getAll()
       .then((response) => this.setState(() => ({ todoList: response.data })))
       .catch((error) => console.log(error));
   }
