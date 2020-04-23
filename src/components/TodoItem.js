@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Card, Typography, Button, Space } from "antd";
+import { Card, Typography, Button } from "antd";
 const { Text } = Typography;
 
 export class TodoItem extends Component {
