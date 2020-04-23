@@ -56,16 +56,18 @@ export class TodoContainer extends Component {
   }
 
   deleteTodoItem(id) {
-    TodoListAPI.deleteItemById(id).then((response) => {
-      let todoList = [...this.state.todoList];
-      let itemIndex = todoList.findIndex(
-        (item) => item.id === response.data.id
-      );
-      todoList.pop(itemIndex);
-      this.setState(() => ({
-        todoList: todoList,
-      }));
-    });
+    TodoListAPI.deleteItemById(id)
+      .then((response) => {
+        let todoList = [...this.state.todoList];
+        let itemIndex = todoList.findIndex(
+          (item) => item.id === response.data.id
+        );
+        todoList.pop(itemIndex);
+        this.setState(() => ({
+          todoList: todoList,
+        }));
+      })
+      .catch((error) => console.log(error));
   }
 
   render() {
